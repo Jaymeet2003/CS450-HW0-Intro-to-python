@@ -39,13 +39,15 @@ def order_scores():
     '''
     curr_dir = os.getcwd()
     file_path = os.path.join(curr_dir, 'data', 'scores.csv')
-    final_dict = []
+    final_list = []
     with open(file_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         final_dict = sorted(reader,key = lambda row : row['scores'])
-    # print(final_dict)
-        # for row in final_dict:
-        #     print(row['name'], row['scores'])
+        for row in final_dict:
+            final_list.append(list(row.values()))
+    return final_list
+            
+        # print(final_list)
     # file = open(file_path, 'r')
     # final_dict = {}
     # list = {}
@@ -62,4 +64,6 @@ def order_scores():
     # final_dict.update(header_dict)    
     # final_dict.update(sorted_dict)      
     
-    return final_dict
+    # return final_dict
+    
+order_scores()
