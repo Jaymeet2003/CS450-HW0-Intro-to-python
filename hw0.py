@@ -44,7 +44,7 @@ def order_scores():
         reader = csv.DictReader(csvfile)
         final_dict = sorted(reader,key = lambda row : row['scores'])
         for row in final_dict:
-            final_list.append(list(row.values()))
+            final_list.append(row['name'])
     return final_list
             
         # print(final_list)
@@ -66,4 +66,4 @@ def order_scores():
     
     # return final_dict
     
-order_scores()
+print(order_scores())
