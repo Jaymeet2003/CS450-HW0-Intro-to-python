@@ -2,12 +2,14 @@
     You will only be writing code in this file and this is the only file submitted to the autograder.
 '''
 import platform
+import csv
+import os
 
 def get_version():
     '''
         print the version of python that you are using.
     '''
-    print(platform.python_version())
+    return platform.python_version()
 
 
 def alternative_sum(start, n):
@@ -35,22 +37,29 @@ def order_scores():
     '''
         read the files scores.csv in the data directory and return the list of names sorted in ascending order of the scores.
     '''
-    import os
     curr_dir = os.getcwd()
     file_path = os.path.join(curr_dir, 'data', 'scores.csv')
-    file = open(file_path, 'r')
-    final_dict = {}
-    list = {}
-    header_dict = {}
-    first_line = next(file).strip()
-    first_name, first_scores = first_line.split(',')
-    header_dict[first_name] = first_scores
     
-    for line in file:
-        name, scores = line.strip().split(',')        
-        list[name] = scores
-        sorted_dict  = dict(sorted(list.items(), key = lambda item : item[1]))
+    with open(file_path, newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        final_dict = sorted(reader,key = lambda row : row['scores'])
+        # for row in final_dict:
+        #     print(row['name'], row['scores'])
+    # file = open(file_path, 'r')
+    # final_dict = {}
+    # list = {}
+    # header_dict = {}
+    # first_line = next(file).strip()
+    # first_name, first_scores = first_line.split(',')
+    # header_dict[first_name] = first_scores
+    
+    # for line in file:
+    #     name, scores = line.strip().split(',')        
+    #     list[name] = scores
+    #     sorted_dict  = dict(sorted(list.items(), key = lambda item : item[1]))
         
-    final_dict.update(header_dict)    
-    final_dict.update(sorted_dict)  
+    # final_dict.update(header_dict)    
+    # final_dict.update(sorted_dict)  
+    # print(final_dict)    
+    
     return final_dict
