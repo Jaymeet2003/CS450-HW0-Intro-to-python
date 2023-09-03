@@ -42,9 +42,9 @@ def order_scores():
     final_list = []
     with open(file_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
-        final_dict = sorted(reader,key = lambda row : row['scores'])
+        final_dict = list(reader)
+        final_dict = sorted(final_dict,key = lambda row : int(row['scores']))
         for row in final_dict:
-            final_list.append(row['scores'])
+            final_list.append(row['name'])
+        # final_list = [row['name'] for row in final_dict]
     return final_list
-
-print(order_scores())
