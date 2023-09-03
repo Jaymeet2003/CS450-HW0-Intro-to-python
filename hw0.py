@@ -46,5 +46,4 @@ def order_scores():
         final_dict = sorted(final_dict,key = lambda row : int(row['scores']))
         for row in final_dict:
             final_list.append(row['name'])
-        # final_list = [row['name'] for row in final_dict]
     return final_list
